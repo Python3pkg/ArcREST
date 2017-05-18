@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from .._abstract.abstract import BaseAGSServer
 import os
 ########################################################################
@@ -93,7 +93,7 @@ class Uploads(BaseAGSServer):
             filePath - the file to be uploaded.
             description - optional description for the uploaded item.
         """
-        import urlparse
+        import urllib.parse
         url = self._url + "/upload"
         params = {
             "f" : "json"

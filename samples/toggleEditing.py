@@ -22,8 +22,8 @@ if __name__ == "__main__":
     serviceUrl = ''#URL to service, make sure to not include a layer
     shh = securityhandlerhelper.securityhandlerhelper(securityinfo=securityinfo)
     if shh.valid == False:
-        print shh.message
+        print(shh.message)
     else:
         fst = featureservicetools.featureservicetools(securityinfo=securityinfo)
         if fst.valid:
-            print fst.EnableEditingOnService(url=serviceUrl)
+            print(fst.EnableEditingOnService(url=serviceUrl))

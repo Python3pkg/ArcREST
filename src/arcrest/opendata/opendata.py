@@ -1,8 +1,8 @@
 """
    OpenData Operations
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 from ._base import BaseOpenData
 from ..web._base import BaseWebOperations
@@ -134,7 +134,7 @@ class OpenDataItem(BaseOpenData, BaseWebOperations):
         self._json = json.dumps(self._json_dict)
         setattr(self, "data", json_dict['data'])
         if 'data' in json_dict:
-            for k,v in json_dict['data'].items():
+            for k,v in list(json_dict['data'].items()):
                 setattr(self, k, v)
                 del k,v
     #----------------------------------------------------------------------

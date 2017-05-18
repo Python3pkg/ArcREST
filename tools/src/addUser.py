@@ -11,7 +11,7 @@ import os
 import json
 from arcpy import env
 import arcpy
-import ConfigParser
+import configparser
 import arcrest
 #--------------------------------------------------------------------------
 class FunctionError(Exception):
@@ -38,7 +38,7 @@ def trace():
 def get_config_value(config_file, section, variable):
     """ extracts a config file value """
     try:
-        parser = ConfigParser.SafeConfigParser()
+        parser = configparser.SafeConfigParser()
         parser.read(config_file)
         return parser.get(section, variable)
     except:
@@ -108,7 +108,7 @@ def main(*argv):
         arcpy.AddError("error in file name: %s" % filename)
         arcpy.AddError("with error message: %s" % synerror)
         arcpy.AddError("ArcPy Error Message: %s" % arcpy.GetMessages(2))
-    except FunctionError, f_e:
+    except FunctionError as f_e:
         messages = f_e.args[0]
         arcpy.AddError("error in function: %s" % messages["function"])
         arcpy.AddError("error on line: %s" % messages["line"])
@@ -124,5 +124,5 @@ def main(*argv):
 if __name__ == "__main__":
     env.overwriteOutput = True
     argv = tuple(str(arcpy.GetParameterAsText(i))
-        for i in xrange(arcpy.GetArgumentCount()))
+        for i in range(arcpy.GetArgumentCount()))
     main(*argv)

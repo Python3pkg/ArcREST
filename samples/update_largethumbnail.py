@@ -48,7 +48,7 @@ def main():
     try:
         shh = securityhandlerhelper.securityhandlerhelper(securityinfo=securityinfo)
         if shh.valid == False:
-            print shh.message
+            print(shh.message)
         else:
             admin = arcrest.manageorg.Administration(securityHandler=shh.securityhandler)
             content = admin.content
@@ -58,20 +58,20 @@ def main():
 
             itemParams.largeThumbnail = pathToImage
 
-            print item.userItem.updateItem(itemParameters=itemParams)
-    except (common.ArcRestHelperError),e:
-        print "error in function: %s" % e[0]['function']
-        print "error on line: %s" % e[0]['line']
-        print "error in file name: %s" % e[0]['filename']
-        print "with error message: %s" % e[0]['synerror']
+            print(item.userItem.updateItem(itemParameters=itemParams))
+    except (common.ArcRestHelperError) as e:
+        print("error in function: %s" % e[0]['function'])
+        print("error on line: %s" % e[0]['line'])
+        print("error in file name: %s" % e[0]['filename'])
+        print("with error message: %s" % e[0]['synerror'])
         if 'arcpyError' in e[0]:
-            print "with arcpy message: %s" % e[0]['arcpyError']
+            print("with arcpy message: %s" % e[0]['arcpyError'])
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)
 
 if __name__ == "__main__":
     main()

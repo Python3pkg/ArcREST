@@ -74,7 +74,7 @@ class AbstractNtlmAuthHandler:
 
             # we must keep the connection because NTLM authenticates the connection, not single requests
             headers["Connection"] = "Keep-Alive"
-            headers = dict((name.title(), val) for name, val in headers.items())
+            headers = dict((name.title(), val) for name, val in list(headers.items()))
 
             # For some reason, six doesn't do this translation correctly
             # TODO rsanders low - find bug in six & fix it
@@ -107,7 +107,7 @@ class AbstractNtlmAuthHandler:
                                                                      NegotiateFlags)
             headers[self.auth_header] = auth
             headers["Connection"] = "Close"
-            headers = dict((name.title(), val) for name, val in headers.items())
+            headers = dict((name.title(), val) for name, val in list(headers.items()))
             try:
                 h.request(req.get_method(), selector, req.data, headers)
                 # none of the configured handlers are triggered, for example redirect-responses are not handled!

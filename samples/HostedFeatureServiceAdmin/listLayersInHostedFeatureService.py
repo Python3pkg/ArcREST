@@ -13,4 +13,4 @@ if __name__ == "__main__":
     agolServices = arcrest.hostedservice.Services(url, securityHandler=sh)
     for service in agolServices.services:
         for lyr in service.layers:
-            print lyr.name, lyr._url
+            print(lyr.name, lyr._url)

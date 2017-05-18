@@ -5,8 +5,8 @@
    Python 2.x/3.x
    ArcREST 3.5,6
 """
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 
 import arcrest
 import os
@@ -35,7 +35,7 @@ def trace():
 def _unicode_convert(obj):
     """ converts unicode to anscii """
     if isinstance(obj, dict):
-        return {_unicode_convert(key): _unicode_convert(value) for key, value in obj.items()}
+        return {_unicode_convert(key): _unicode_convert(value) for key, value in list(obj.items())}
     elif isinstance(obj, list):
         return [_unicode_convert(element) for element in obj]
     elif isinstance(obj, str):

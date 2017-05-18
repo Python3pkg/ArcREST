@@ -87,13 +87,13 @@ def main():
             destinationItemId=None,
             serviceProxyParams=None,
             metadata=None)
-        print res
+        print(res)
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)
 
 if __name__ == "__main__":
     main()

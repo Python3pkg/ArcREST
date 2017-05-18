@@ -8,9 +8,9 @@
 .. moduleauthor:: Esri
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
+
+
+
 import os
 import uuid
 import json
@@ -115,7 +115,7 @@ class FeatureService(abstract.BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k == 'layers':
                 self._getLayers()
             elif k == 'tables':
@@ -953,7 +953,7 @@ class FeatureLayer(abstract.BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -1803,21 +1803,21 @@ class FeatureLayer(abstract.BaseAGOLClass):
             params['units'] = units
         if timeFilter and \
            isinstance(timeFilter, TimeFilter):
-            for k,v in timeFilter.filter.items():
+            for k,v in list(timeFilter.filter.items()):
                 params[k] = v
         elif isinstance(timeFilter, dict):
-            for k,v in timeFilter.items():
+            for k,v in list(timeFilter.items()):
                 params[k] = v
         if geomtryFilter and \
            isinstance(geomtryFilter, GeometryFilter):
-            for k,v in geomtryFilter.filter.items():
+            for k,v in list(geomtryFilter.filter.items()):
                 params[k] = v
         elif geomtryFilter and \
              isinstance(geomtryFilter, dict):
-            for k,v in geomtryFilter.items():
+            for k,v in list(geomtryFilter.items()):
                 params[k] = v
         if len(kwargs) > 0:
-            for k,v in kwargs.items():
+            for k,v in list(kwargs.items()):
                 params[k] = v
                 del k,v
 
@@ -1972,7 +1972,7 @@ class FeatureLayer(abstract.BaseAGOLClass):
         """
         l.sort()
         newn = int(1.0 * len(l) / n + 0.5)
-        for i in xrange(0, n-1):
+        for i in range(0, n-1):
             yield l[i*newn:i*newn+newn]
         yield l[n*newn-newn:]
     #----------------------------------------------------------------------
@@ -2318,7 +2318,7 @@ class FeatureLayer(abstract.BaseAGOLClass):
             js = js['features']
             if lowerCaseFieldNames == True:
                 for feat in js:
-                    feat['attributes'] = dict((k.lower(), v) for k,v in feat['attributes'].items())
+                    feat['attributes'] = dict((k.lower(), v) for k,v in list(feat['attributes'].items()))
             if len(js) == 0:
                 return {'addResults':None}
             if len(js) <= max_chunk:
@@ -2513,7 +2513,7 @@ class TiledService(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:

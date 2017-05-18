@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 import zipfile
 import datetime
 import calendar
@@ -145,7 +145,7 @@ class BaseAGSServer(BaseWebOperations):
     def _unicode_convert(self, obj):
         """ converts unicode to anscii """
         if isinstance(obj, dict):
-            return {self._unicode_convert(key): self._unicode_convert(value) for key, value in obj.items()}
+            return {self._unicode_convert(key): self._unicode_convert(value) for key, value in list(obj.items())}
         elif isinstance(obj, list):
             return [self._unicode_convert(element) for element in obj]
         elif isinstance(obj, str):
@@ -269,7 +269,7 @@ class BaseAGOLClass(BaseWebOperations):
     def _unicode_convert(self, obj):
         """ converts unicode to anscii """
         if isinstance(obj, dict):
-            return {self._unicode_convert(key): self._unicode_convert(value) for key, value in obj.items()}
+            return {self._unicode_convert(key): self._unicode_convert(value) for key, value in list(obj.items())}
         elif isinstance(obj, list):
             return [self._unicode_convert(element) for element in obj]
         elif isinstance(obj, str):

@@ -3,8 +3,8 @@ This provides access to a server and it's services for non administrative
 functions.  This allows developers to access a REST service just like a
 user/developer would.
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from . import BaseAGSServer
 from ..packages.six.moves.urllib_parse import urlparse
 
@@ -84,7 +84,7 @@ class Server(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k == "folders":
                 pass
             elif k in attributes:
@@ -96,7 +96,7 @@ class Server(BaseAGSServer):
                                  securityHandler=self._securityHandler,
                                  proxy_port=self._proxy_port,
                                  proxy_url=self._proxy_url)
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k == 'folders':
                 v.insert(0, 'root')
                 setattr(self, "_"+ k, v)
@@ -134,7 +134,7 @@ class Server(BaseAGSServer):
         if self._json_dict is None:
             self._json_dict = {}
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property

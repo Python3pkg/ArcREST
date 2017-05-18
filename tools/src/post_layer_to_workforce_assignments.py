@@ -42,7 +42,7 @@ def outputPrinter(message,typeOfMessage='message'):
     else:
         arcpy.AddMessage(message=message)
 
-    print message
+    print(message)
 def main():
     arcpy.env.overwriteOutput = True
     fsId = None
@@ -184,7 +184,7 @@ def main():
         outputPrinter(message="with error message: %s" % synerror,typeOfMessage='error')
         outputPrinter(message="ArcPy Error Message: %s" % arcpy.GetMessages(2),typeOfMessage='error')
         arcpy.SetParameterAsText(8, "false")
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         outputPrinter(message=e,typeOfMessage='error')
         arcpy.SetParameterAsText(8, "false")
     except:

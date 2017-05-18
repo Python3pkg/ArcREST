@@ -11,15 +11,15 @@ server = arcrest.ags.server.Server(url=url,
 #  Access the AGSAdminstration Class
 #
 adminAGS = server.admin
-print adminAGS.currentVersion
-print adminAGS.clusters
+print(adminAGS.currentVersion)
+print(adminAGS.clusters)
 #  Walk all the folders and
 #  print out the raw JSON response
 #  for each service and the url
 for folder in server.folders:
     server.currentFolder = folder
     for service in server.services:
-        print '----------------------'
-        print service.url
-        print str(service)
-        print '----------------------'
+        print('----------------------')
+        print(service.url)
+        print(str(service))
+        print('----------------------')

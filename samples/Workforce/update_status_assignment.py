@@ -4,7 +4,7 @@
    ArcREST 3.5
 """
 
-from __future__ import print_function
+
 import arcrest
 from arcrest.common.general import Feature
 from arcresthelper import featureservicetools
@@ -97,7 +97,7 @@ def main():
                 else:
                     print ("0 features updated in %s /n result info %s" % (fl.name,str(results)))
 
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         print ("error in function: %s" % e[0]['function'])
         print ("error on line: %s" % e[0]['line'])
         print ("error in file name: %s" % e[0]['filename'])

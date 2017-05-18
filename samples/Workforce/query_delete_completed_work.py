@@ -6,7 +6,7 @@
    Python 2.x/3.x
    ArcREST 3.5
 """
-from __future__ import print_function
+
 import arcrest
 from arcresthelper import featureservicetools
 from arcresthelper import common
@@ -73,7 +73,7 @@ def main():
                     res = fst.DeleteFeaturesFromFeatureLayer(url=fl.url, sql=sql)
                     print (res)
 
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         print ("error in function: %s" % e[0]['function'])
         print ("error on line: %s" % e[0]['line'])
         print ("error in file name: %s" % e[0]['filename'])

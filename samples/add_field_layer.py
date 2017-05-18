@@ -6,7 +6,7 @@
    Python 2/3
 
 """
-from __future__ import print_function
+
 from arcrest.security import AGOLTokenSecurityHandler
 from arcrest.agol import FeatureLayer
 

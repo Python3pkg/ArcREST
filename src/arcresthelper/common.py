@@ -1,5 +1,5 @@
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 
 
 import os
@@ -53,7 +53,7 @@ def merge_dicts(dicts, op=operator.add):
         if a is None:
             a = b.copy()
         else:
-            a = dict(a.items() + b.items() + [(k, op(a[k], b[k])) for k in set(b) & set(a)])
+            a = dict(list(a.items()) + list(b.items()) + [(k, op(a[k], b[k])) for k in set(b) & set(a)])
     return a
 
 ##----------------------------------------------------------------------
@@ -442,7 +442,7 @@ def unicode_convert(obj):
     """
     try:
         if isinstance(obj, dict):
-            return {unicode_convert(key): unicode_convert(value) for key, value in obj.items()}
+            return {unicode_convert(key): unicode_convert(value) for key, value in list(obj.items())}
         elif isinstance(obj, list):
             return [unicode_convert(element) for element in obj]
         elif isinstance(obj, str):
@@ -500,7 +500,7 @@ def find_replace(obj, find, replace):
     """
     try:
         if isinstance(obj, dict):
-            return {find_replace(key,find,replace): find_replace(value,find,replace) for key, value in obj.items()}
+            return {find_replace(key,find,replace): find_replace(value,find,replace) for key, value in list(obj.items())}
         elif isinstance(obj, list):
             return [find_replace(element,find,replace) for element in obj]
         elif obj == find:

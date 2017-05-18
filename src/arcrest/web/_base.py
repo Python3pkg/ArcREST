@@ -2,8 +2,8 @@
    Contains POST and GET web operations for
    ArcREST Python Package.
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import io
 import os
 import re
@@ -19,8 +19,9 @@ import mimetypes
 import email.generator
 
 from io import BytesIO
+import collections
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except ImportError:
     from io import StringIO
 
@@ -41,7 +42,7 @@ class BaseOperation(object):
             try:
                 #__init is renamed to the class with an _
                 init = getattr(self, "_" + self.__class__.__name__ + "__init", None)
-                if init is not None and callable(init):
+                if init is not None and isinstance(init, collections.Callable):
                     init()
             except Exception as e:
                 pass
@@ -90,13 +91,13 @@ class MultiPartForm(object):
         if len(param_dict) == 0:
             self.form_fields = []
         else:
-            for k,v in param_dict.items():
+            for k,v in list(param_dict.items()):
                 self.form_fields.append((k,v))
                 del k,v
         if len(files) == 0:
             self.files = []
         else:
-            for key,v in files.items():
+            for key,v in list(files.items()):
                 if isinstance(v, list):
                     fileName = os.path.basename(v[1])
                     filePath = v[0]
@@ -278,7 +279,7 @@ class BaseWebOperations(BaseOperation):
             handler = securityHandler.handler
             cj = securityHandler.cookiejar
         if len(param_dict) > 0:
-            for k,v in param_dict.items():
+            for k,v in list(param_dict.items()):
                 if isinstance(v, bool):
                     param_dict[k] = json.dumps(v)
         return param_dict, handler, cj
@@ -456,7 +457,7 @@ class BaseWebOperations(BaseOperation):
             headers['Accept-Encoding'] = 'gzip'
         else:
             headers['Accept-Encoding'] = ''
-        for k,v in additional_headers.items():
+        for k,v in list(additional_headers.items()):
             headers[k] = v
             del k,v
         hasContext = 'context' in self._has_context(request.urlopen)
@@ -467,7 +468,7 @@ class BaseWebOperations(BaseOperation):
             ctx.verify_mode = ssl.CERT_NONE
 
         opener = request.build_opener(*handlers)
-        opener.addheaders = [(k,v) for k,v in headers.items()]
+        opener.addheaders = [(k,v) for k,v in list(headers.items())]
         request.install_opener(opener)
         if force_form_post == False:
             data = urlencode(param_dict)
@@ -477,7 +478,7 @@ class BaseWebOperations(BaseOperation):
             req = request.Request(self._asString(url),
                                   data = data,
                                   headers=headers)
-            for k,v in headers.items():
+            for k,v in list(headers.items()):
                 req.add_header(k,v)
             if hasContext and self._verify == False:
                 resp = request.urlopen(req, context=ctx)
@@ -586,7 +587,7 @@ class BaseWebOperations(BaseOperation):
             pass_headers['Accept-encoding'] = ""
         #headers.append(('User-Agent', USER_AGENT))
         pass_headers['User-Agent'] = self.useragent
-        if len(param_dict.keys()) == 0:
+        if len(list(param_dict.keys())) == 0:
             param_dict = None
         if handlers is None:
             handlers = []

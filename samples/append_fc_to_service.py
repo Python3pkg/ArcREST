@@ -51,7 +51,7 @@ if __name__ == "__main__":
     try:
         fst = featureservicetools.featureservicetools(securityinfo)
         if fst.valid == False:
-            print fst.message
+            print(fst.message)
         else:
 
             fs = fst.GetFeatureService(itemId=itemId,returnURLOnly=False)
@@ -60,14 +60,14 @@ if __name__ == "__main__":
                 fl = fst.GetLayerFromFeatureService(fs=fs,layerName=layerName,returnURLOnly=False)
                 if not fl is None:
                     results = fl.addFeatures(fc=fc,attachmentTable=atTable)
-                    print json.dumps(results)
+                    print(json.dumps(results))
                 else:
-                    print "Layer %s was not found, please check your credentials and layer name" % layerName
+                    print("Layer %s was not found, please check your credentials and layer name" % layerName)
             else:
-                print "Feature Service with id %s was not found" % fsId
+                print("Feature Service with id %s was not found" % fsId)
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)

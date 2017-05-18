@@ -6,7 +6,7 @@
    Python 2/3
    ArcREST version 3.5.x
 """
-from __future__ import print_function
+
 from arcrest.security import AGOLTokenSecurityHandler
 import arcrest
 

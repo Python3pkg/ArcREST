@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from ..packages import six
 from ..packages.six.moves import urllib_parse as urlparse
 from ..security import OAuthSecurityHandler, AGOLTokenSecurityHandler, PortalTokenSecurityHandler
@@ -50,7 +50,7 @@ class Content(BaseAGOLClass):
     def __iter__(self):
         """iterates over raw json and returns [key, values]"""
         a = {}
-        for k,v in a.items():
+        for k,v in list(a.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -280,7 +280,7 @@ class Item(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -694,7 +694,7 @@ class Item(BaseAGOLClass):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -1133,9 +1133,9 @@ class UserItem(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k == "item":
-                for key,value in v.items():
+                for key,value in list(v.items()):
                     if key in attributes:
                         setattr(self, "_" + key, value)
                     else:
@@ -1506,7 +1506,7 @@ class UserItem(BaseAGOLClass):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     def deleteItem(self):
@@ -1846,7 +1846,7 @@ class UserItem(BaseAGOLClass):
         params = {
             "f" : "json",
         }
-        for key, value in additionalParams.items():
+        for key, value in list(additionalParams.items()):
             params[key] = value
         if wait == True:
             res = self._post(url=url,
@@ -2034,7 +2034,7 @@ class User(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in result_template.items():
+        for k,v in list(result_template.items()):
             if k in attributes:
                 setattr(self, "_"+ k, result_template[k])
             else:
@@ -2255,7 +2255,7 @@ class User(BaseAGOLClass):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     def refresh(self):
@@ -2731,8 +2731,8 @@ class User(BaseAGOLClass):
                    'filename': os.path.basename(filePath),
                    'type': itemParameters.type,
                    'f': 'json'}
-            for k,v in itemParameters.value.items():
-                if k not in data.keys():
+            for k,v in list(itemParameters.value.items()):
+                if k not in list(data.keys()):
                     if isinstance(v, bool):
                         data[k] = json.dumps(v)
                     else:
@@ -2800,7 +2800,7 @@ class User(BaseAGOLClass):
         }
         res = ""
         if itemParameters is not None:
-            for k,v in itemParameters.value.items():
+            for k,v in list(itemParameters.value.items()):
                 if isinstance(v, bool):
                     params[k] = json.dumps(v)
                 else:
@@ -3093,7 +3093,7 @@ class Group(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -3119,7 +3119,7 @@ class Group(BaseAGOLClass):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     def refresh(self):

@@ -4,7 +4,7 @@
    ArcREST 3.0.1
 """
 
-from __future__ import print_function
+
 from arcresthelper import securityhandlerhelper
 from arcrest.agol import FeatureService
 from arcrest.common.filters import LayerDefinitionFilter

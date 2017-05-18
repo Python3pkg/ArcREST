@@ -13,6 +13,6 @@ if __name__ == "__main__":
     agolServices = arcrest.hostedservice.Services(url, securityHandler=sh)
     for service in agolServices.services:
         if isinstance(service, arcrest.hostedservice.AdminMapService):
-            print service.id
-            print service.urlService
-            print service.name
+            print(service.id)
+            print(service.urlService)
+            print(service.name)

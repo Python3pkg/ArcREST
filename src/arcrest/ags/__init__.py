@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from .featureservice import *
 from .mapservice import *
 from .layer import *

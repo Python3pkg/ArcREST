@@ -1,6 +1,6 @@
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
+
+
+
 import datetime
 import time
 import json
@@ -29,7 +29,7 @@ def create_uid():
 def _unicode_convert(obj):
     """ converts unicode to anscii """
     if isinstance(obj, dict):
-        return {_unicode_convert(key): _unicode_convert(value) for key, value in obj.items()}
+        return {_unicode_convert(key): _unicode_convert(value) for key, value in list(obj.items())}
     elif isinstance(obj, list):
         return [_unicode_convert(element) for element in obj]
     elif isinstance(obj, str):
@@ -144,7 +144,7 @@ class Feature(object):
             if isinstance(value, dict):
                 if 'geometry' in value:
                     self._dict['geometry'] = value['geometry']
-                elif any(k in value.keys() for k in ['x','y','points','paths','rings', 'spatialReference']):
+                elif any(k in list(value.keys()) for k in ['x','y','points','paths','rings', 'spatialReference']):
                     self._dict['geometry'] = value
             elif isinstance(value, AbstractGeometry):
                 self._dict['geometry'] = value.asDictionary
@@ -191,7 +191,7 @@ class Feature(object):
         """
         fields = self.fields
         row = [""] * len(fields)
-        for k,v in self._attributes.items():
+        for k,v in list(self._attributes.items()):
             row[fields.index(k)] = v
             del v
             del k
@@ -231,7 +231,7 @@ class Feature(object):
             self._attributes = self._dict['feature']['attributes']
         else:
             self._attributes = self._dict['attributes']
-        return self._attributes.keys()
+        return list(self._attributes.keys())
     #----------------------------------------------------------------------
     @property
     def geometryType(self):
@@ -267,7 +267,7 @@ class Feature(object):
                         if row[fields.index(df)] != None:
                             row[fields.index(df)] = int((_date_handler(row[fields.index(df)])))
                     template = {
-                        "attributes" : dict(zip(non_geom_fields, row))
+                        "attributes" : dict(list(zip(non_geom_fields, row)))
                     }
                     if "SHAPE@JSON" in fields:
                         template['geometry'] = \

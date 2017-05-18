@@ -50,7 +50,7 @@ if __name__ == "__main__":
         orgt = orgtools.orgtools(securityinfo=securityinfo)
 
         if orgt.valid == False:
-            print orgt.message
+            print(orgt.message)
         else:        
                         
             if os.path.isfile(csvgroups):
@@ -78,9 +78,9 @@ if __name__ == "__main__":
                         if result is None:
                             pass
                         else:
-                            print "Group created: " + result.title
+                            print("Group created: " + result.title)
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)

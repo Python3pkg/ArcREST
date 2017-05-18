@@ -1,5 +1,5 @@
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 import json
 from ..packages.six.moves.urllib_parse import quote
 from ..agol import FeatureService
@@ -179,7 +179,7 @@ class CMPUser(BaseCMP):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -248,7 +248,7 @@ class CMPUser(BaseCMP):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:

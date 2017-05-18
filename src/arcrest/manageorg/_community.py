@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from ..packages.six.moves import urllib_parse as urlparse
 
 from .._abstract.abstract import BaseAGOLClass
@@ -37,7 +37,7 @@ class Community(BaseAGOLClass):
     #----------------------------------------------------------------------
     def __iter__(self):
         """returns the key/values of an object"""
-        for k,v in {}.items():
+        for k,v in list({}.items()):
             yield k,v
     #----------------------------------------------------------------------
     def checkUserName(self, username):
@@ -131,7 +131,7 @@ class Community(BaseAGOLClass):
             communityInfo = self.communitySelf
 
         if isinstance(groupNames,list):
-            groupNames = map(str.upper, groupNames)
+            groupNames = list(map(str.upper, groupNames))
         else:
             groupNames = groupNames.upper()
         if 'groups' in communityInfo:
@@ -488,7 +488,7 @@ class Group(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -504,7 +504,7 @@ class Group(BaseAGOLClass):
         """returns properties (key/values) from the JSON response"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -993,7 +993,7 @@ class Group(BaseAGOLClass):
                            proxy_url=self._proxy_url,
                            proxy_port=self._proxy_port)
         items = []
-        if "applications" in res.keys():
+        if "applications" in list(res.keys()):
             for apps in res['applications']:
                 items.append(
                     self.Application(url="%s/%s" % (self._url, apps['username']),
@@ -1043,7 +1043,7 @@ class Group(BaseAGOLClass):
             attributes = [attr for attr in dir(self)
                           if not attr.startswith('__') and \
                           not attr.startswith('_')]
-            for k,v in json_dict.items():
+            for k,v in list(json_dict.items()):
                 if k in attributes:
                     setattr(self, "_"+ k, json_dict[k])
                 else:
@@ -1085,7 +1085,7 @@ class Group(BaseAGOLClass):
             """returns JSON as [key,value] objects"""
             if self._json_dict is None:
                 self.__init()
-            for k,v in self._json_dict.items():
+            for k,v in list(self._json_dict.items()):
                 yield [k,v]
         #----------------------------------------------------------------------
         def accept(self):
@@ -1319,7 +1319,7 @@ class User(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -1341,7 +1341,7 @@ class User(BaseAGOLClass):
         if self._json_dict is None:
             self._json_dict = {}
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -1725,7 +1725,7 @@ class User(BaseAGOLClass):
                 expiration = 0
             else:
                 expiration = -1
-        elif isinstance(expiration, (int, long)):
+        elif isinstance(expiration, int):
             dt = datetime.now() + timedelta(hours=hours)
             expiration = local_time_to_online(dt=dt)
         else:
@@ -1969,7 +1969,7 @@ class Invitations(BaseAGOLClass):
             attributes = [attr for attr in dir(self)
                           if not attr.startswith('__') and \
                           not attr.startswith('_')]
-            for k,v in json_dict.items():
+            for k,v in list(json_dict.items()):
                 if k in attributes:
                     setattr(self, "_"+ k, json_dict[k])
                 else:
@@ -1990,7 +1990,7 @@ class Invitations(BaseAGOLClass):
             """returns JSON as [key,value] objects"""
             if self._json_dict is None:
                 self.__init()
-            for k,v in self._json_dict.items():
+            for k,v in list(self._json_dict.items()):
                 yield [k,v]
         #----------------------------------------------------------------------
         @property
@@ -2141,7 +2141,7 @@ class Invitations(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -2162,7 +2162,7 @@ class Invitations(BaseAGOLClass):
         """returns JSON as [key,value] objects"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -2238,7 +2238,7 @@ class Notifications(BaseAGOLClass):
             attributes = [attr for attr in dir(self)
                           if not attr.startswith('__') and \
                           not attr.startswith('_')]
-            for k,v in json_dict.items():
+            for k,v in list(json_dict.items()):
                 if k in attributes:
                     setattr(self, "_"+ k, json_dict[k])
                 else:
@@ -2306,7 +2306,7 @@ class Notifications(BaseAGOLClass):
             """returns JSON as [key,value] objects"""
             if self._json_dict is None:
                 self.__init()
-            for k,v in self._json_dict.items():
+            for k,v in list(self._json_dict.items()):
                 yield [k,v]
         #----------------------------------------------------------------------
         def delete(self):
@@ -2350,7 +2350,7 @@ class Notifications(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -2371,7 +2371,7 @@ class Notifications(BaseAGOLClass):
         """returns JSON as [key,value] objects"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property

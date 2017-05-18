@@ -5,7 +5,7 @@
    Python 2/3
    ArcREST version 3.5.x
 """
-from __future__ import print_function
+
 import arcrest
 from arcrest.security import AGOLTokenSecurityHandler
 from datetime import datetime as dt

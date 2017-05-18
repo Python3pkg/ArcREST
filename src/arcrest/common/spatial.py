@@ -1,9 +1,9 @@
 """
 Contains all the spatial functions
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
+
+
+
 import os, datetime
 try:
     import arcpy
@@ -286,7 +286,7 @@ def _unicode_convert(obj):
     if isinstance(obj, dict):
         return {_unicode_convert(key): \
                 _unicode_convert(value) \
-                for key, value in obj.items()}
+                for key, value in list(obj.items())}
     elif isinstance(obj, list):
         return [_unicode_convert(element) for element in obj]
     elif isinstance(obj, str):

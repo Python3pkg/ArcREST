@@ -7,7 +7,7 @@
     @requirements: Python 2.7.x, ArcGIS 10.2.1
     @copyright: Esri, 2016
 '''
-from __future__ import print_function
+
 import gc
 import os
 import sys
@@ -181,7 +181,7 @@ def main(*argv):
         outputPrinter(message="with error message: %s" % synerror,typeOfMessage='error')
         outputPrinter(message="ArcPy Error Message: %s" % arcpy.GetMessages(2),typeOfMessage='error')
         arcpy.SetParameterAsText(9, "false")
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         outputPrinter(message=e,typeOfMessage='error')
         arcpy.SetParameterAsText(9, "false")
     except:
@@ -251,7 +251,7 @@ def syncLayer(fst, fs, layer, layerName, displayName, lowerCaseFieldNames, showF
 
 if __name__ == "__main__":
     argv = tuple(arcpy.GetParameterAsText(i)
-        for i in xrange(arcpy.GetArgumentCount()))
+        for i in range(arcpy.GetArgumentCount()))
     main(*argv)
 
 

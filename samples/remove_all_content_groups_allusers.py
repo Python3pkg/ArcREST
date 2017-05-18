@@ -5,7 +5,7 @@
    Python 2.x
    ArcREST 3.5
 """
-from __future__ import print_function
+
 import arcrest
 from arcresthelper import resettools
 from arcresthelper import common

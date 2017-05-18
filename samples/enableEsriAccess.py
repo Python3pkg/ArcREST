@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     shh = securityhandlerhelper.securityhandlerhelper(securityinfo=securityinfo)
     if shh.valid == False:
-        print (shh.message)
+        print((shh.message))
     else:
         admin = arcrest.manageorg.Administration(securityHandler=shh.securityhandler, initialize=True)
         portal = admin.portals.portalSelf
@@ -38,20 +38,20 @@ if __name__ == "__main__":
             for commUser in commUsers:
                 if not commUser.username.lower() in usersToSkip:
                     user = admin.community.users.user(commUser.username)
-                    print commUser.username + ": " + commUser.userType + " {" + commUser.provider + ")"
+                    print(commUser.username + ": " + commUser.userType + " {" + commUser.provider + ")")
                     if (enableAccess == True):
                         if commUser.userType == 'arcgisonly':
-                            print (user.update(userType='both'))
-                            print (commUser.username + ":  enabling Esri Access")
+                            print((user.update(userType='both')))
+                            print((commUser.username + ":  enabling Esri Access"))
                         else:
-                            print (commUser.username + ":  Esri Access already enabled")
+                            print((commUser.username + ":  Esri Access already enabled"))
                             
                     else:
                         if commUser.userType == 'both':
-                            print (user.update(userType='arcgisonly'))
-                            print (commUser.username + ":  disabling Esri Access")
+                            print((user.update(userType='arcgisonly')))
+                            print((commUser.username + ":  disabling Esri Access"))
                         else:
-                            print (commUser.username + ":  Esri Access already disabled")
+                            print((commUser.username + ":  Esri Access already disabled"))
                 else:
-                    print (commUser.username + ": skipped")
+                    print((commUser.username + ": skipped"))
                         

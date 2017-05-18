@@ -53,11 +53,11 @@ def main():
     pathToFeatureClass = r""#Path to FC
     try:
         startTime = datetime.datetime.now()
-        print "Starting process at %s" % (configFile,startTime.strftime(dateTimeFormat))
+        print("Starting process at %s" % (configFile,startTime.strftime(dateTimeFormat)))
 
         fst = featureservicetools.featureservicetools(securityinfo)
         if fst.valid == False:
-            print fst.message
+            print(fst.message)
         else:
 
             fs = fst.GetFeatureService(itemId=itemId,returnURLOnly=False)
@@ -70,20 +70,20 @@ def main():
                                                         id_field=id_field,
                                                       chunksize=50)
 
-        print "process completed in %s" % (configFile, str(datetime.datetime.now() - startTime))
-    except (common.ArcRestHelperError),e:
-        print "error in function: %s" % e[0]['function']
-        print "error on line: %s" % e[0]['line']
-        print "error in file name: %s" % e[0]['filename']
-        print "with error message: %s" % e[0]['synerror']
+        print("process completed in %s" % (configFile, str(datetime.datetime.now() - startTime)))
+    except (common.ArcRestHelperError) as e:
+        print("error in function: %s" % e[0]['function'])
+        print("error on line: %s" % e[0]['line'])
+        print("error in file name: %s" % e[0]['filename'])
+        print("with error message: %s" % e[0]['synerror'])
         if 'arcpyError' in e[0]:
-            print "with arcpy message: %s" % e[0]['arcpyError']
+            print("with arcpy message: %s" % e[0]['arcpyError'])
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)
 
 if __name__ == "__main__":
     main()

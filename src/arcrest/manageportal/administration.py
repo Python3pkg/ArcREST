@@ -6,8 +6,8 @@ information and have a well-defined state. Operations act on these
 resources and update their information or state. Resources and operations
 are hierarchical and have unique universal resource locators (URLs).
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 import tempfile
 from datetime import datetime
@@ -48,7 +48,7 @@ class _Federation(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -173,7 +173,7 @@ class _log(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -278,7 +278,7 @@ class _log(BaseAGOLClass):
             filter_value['users'] = users.split(',')
         if messageCount is None:
             params['pageSize'] = 1000
-        elif isinstance(messageCount, (int, long, float)):
+        elif isinstance(messageCount, (int, float)):
             params['pageSize'] = int(messageCount)
         else:
             params['pageSize'] = 1000
@@ -348,7 +348,7 @@ class _Security(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -1631,7 +1631,7 @@ class PortalAdministration(BaseAGOLClass):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -1648,7 +1648,7 @@ class PortalAdministration(BaseAGOLClass):
         """returns the raw key/values for the object"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property

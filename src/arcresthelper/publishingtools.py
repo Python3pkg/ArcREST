@@ -1,6 +1,6 @@
 
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 
 from .securityhandlerhelper import securityhandlerhelper
 import re as re
@@ -1932,7 +1932,7 @@ class publishingtools(securityhandlerhelper):
                                         repInfo = replaceItem['ReplaceString'].split("|")
                                         if len(repInfo) == 2:
                                             if repInfo[0] == mapDet['ReplaceTag']:
-                                                for key,value in mapDet['MapInfo']['Layers'].items():
+                                                for key,value in list(mapDet['MapInfo']['Layers'].items()):
                                                     if value["Name"] == repInfo[1]:
                                                         replaceItem['ReplaceString'] = value["ID"]
 

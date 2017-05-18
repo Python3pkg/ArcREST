@@ -4,7 +4,7 @@
    ArcREST version 3.5.x
    Python 2/3
 """
-from __future__ import print_function
+
 import arcrest
 
 if __name__ == "__main__":

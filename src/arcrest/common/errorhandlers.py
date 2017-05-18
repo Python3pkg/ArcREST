@@ -1,8 +1,8 @@
 """
 contains all error handlers for ArcREST
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 MSGS = {
     100 : "100: Invalid Inputs",
     200 : "200: Error with the GET Operation",

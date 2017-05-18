@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
     shh = securityhandlerhelper.securityhandlerhelper(securityinfo=securityinfo)
     if shh.valid == False:
-        print shh.message
+        print(shh.message)
     else:
         fl= FeatureLayer(
             url=url,
@@ -63,4 +63,4 @@ if __name__ == "__main__":
             for fld in fieldInfo:
                 feat.set_value(fld["FieldName"],fld['ValueToSet'])
 
-        print fl.updateFeature(features=resFeats)
+        print(fl.updateFeature(features=resFeats))

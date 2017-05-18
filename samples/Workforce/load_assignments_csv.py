@@ -4,7 +4,7 @@
    ArcREST 3.5
 """
 
-from __future__ import print_function
+
 import arcrest
 from arcrest.common.general import Feature
 from arcresthelper import featureservicetools
@@ -18,11 +18,11 @@ def UnicodeDictReader(utf8_data, **kwargs):
     if six.PY3 == True:
         csv_reader = csv.DictReader(utf8_data, **kwargs)
         for row in csv_reader:
-            yield {key: value for key, value in row.items()}
+            yield {key: value for key, value in list(row.items())}
     else:
         csv_reader = csv.DictReader(utf8_data, **kwargs)
         for row in csv_reader:
-            yield {unicode(key, 'utf-8-sig'): unicode(value, 'utf-8-sig') for key, value in row.items()}
+            yield {str(key, 'utf-8-sig'): str(value, 'utf-8-sig') for key, value in list(row.items())}
 def trace():
     """
         trace finds the line, the filename
@@ -164,7 +164,7 @@ def main():
                     else:
                         print ("0 features added to %s /n result info %s" % (fl.name,str(results)))
 
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         print ("error in function: %s" % e[0]['function'])
         print ("error on line: %s" % e[0]['line'])
         print ("error in file name: %s" % e[0]['filename'])

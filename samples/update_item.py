@@ -48,7 +48,7 @@ def main():
 
         shh = securityhandlerhelper.securityhandlerhelper(securityinfo)
         if shh.valid == False:
-            print shh.message
+            print(shh.message)
         else:
             portalAdmin = arcrest.manageorg.Administration(securityHandler=shh.securityhandler)
             item = portalAdmin.content.getItem(itemId=itemId).userItem
@@ -63,13 +63,13 @@ def main():
                                     text=None
                                     )
 
-            print res
+            print(res)
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)
 
 if __name__ == "__main__":
     main()

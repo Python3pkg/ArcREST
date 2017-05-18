@@ -7,8 +7,8 @@
 .. moduleauthor:: Esri
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import tempfile
 from .._abstract.abstract import BaseAGSServer
 import json
@@ -66,7 +66,7 @@ class VectorTileService(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, v)
             else:

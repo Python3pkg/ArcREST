@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 from ._gpobjects import *
 from .._abstract.abstract import BaseAGSServer, BaseGPObject
@@ -85,7 +85,7 @@ class GPService(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 if k == "tasks":
                     self._tasks = []
@@ -112,7 +112,7 @@ class GPService(BaseAGSServer):
         """returns the JSON response in key/value pairs"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield [k,v]
     #----------------------------------------------------------------------
     @property
@@ -195,7 +195,7 @@ class GPTask(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -424,7 +424,7 @@ class GPJob(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -467,7 +467,7 @@ class GPJob(BaseAGSServer):
     def results(self):
         """ returns the results """
         self.__init()
-        for k,v in self._results.items():
+        for k,v in list(self._results.items()):
             param = self._get_json(v['paramUrl'])
             if param['dataType'] == "GPFeatureRecordSetLayer":
                 self._results[k] = GPFeatureRecordSetLayer.fromJSON(json.dumps(param))

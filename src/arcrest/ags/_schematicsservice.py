@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from .._abstract.abstract import BaseAGSServer
 import json
 
@@ -51,7 +51,7 @@ class SchematicsService(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, v)
             else:
@@ -68,7 +68,7 @@ class SchematicsService(BaseAGSServer):
         returns key/value pair
         """
         attributes = json.loads(str(self))
-        for att in attributes.keys():
+        for att in list(attributes.keys()):
             yield [att, getattr(self, att)]
     #----------------------------------------------------------------------
     @property

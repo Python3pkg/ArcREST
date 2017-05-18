@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 
 class BaseSymbol(object):
@@ -74,7 +74,7 @@ class SimpleMarkerSymbol(BaseSymbol):
     def angle(self, value):
         """gets/sets the angle"""
         if self._angle != value and \
-           isinstance(value, (int, float, long)):
+           isinstance(value, (int, float)):
             self._angle = value
     #----------------------------------------------------------------------
     @property
@@ -98,7 +98,7 @@ class SimpleMarkerSymbol(BaseSymbol):
     def size(self, value):
         """gets/sets the size"""
         if self._size != value and \
-           isinstance(value, (int, float, long)):
+           isinstance(value, (int, float)):
             self._size = value
     #----------------------------------------------------------------------
     @property
@@ -110,7 +110,7 @@ class SimpleMarkerSymbol(BaseSymbol):
     def xoffset(self, value):
         """gets/sets the xoffset"""
         if self._xoffset != value and \
-           isinstance(value, (int, float, long)):
+           isinstance(value, (int, float)):
             self._xoffset = value
     #----------------------------------------------------------------------
     @property
@@ -122,7 +122,7 @@ class SimpleMarkerSymbol(BaseSymbol):
     def yoffset(self, value):
         """gets/sets the yoffset"""
         if self._yoffset != value and \
-           isinstance(value, (int, float, long)):
+           isinstance(value, (int, float)):
             self._yoffset = value
     #----------------------------------------------------------------------
     @property
@@ -135,7 +135,7 @@ class SimpleMarkerSymbol(BaseSymbol):
     @outlineWidth.setter
     def outlineWidth(self, value):
         """gets/sets the outlineWidth"""
-        if isinstance(value, (int, float, long)) and \
+        if isinstance(value, (int, float)) and \
            not self._outline is None:
             self._outline['width'] = value
     #----------------------------------------------------------------------
@@ -229,7 +229,7 @@ class SimpleLineSymbol(BaseSymbol):
     def width(self, value):
         """gets/sets the width"""
         if self._width != value and \
-           isinstance(value, (int, float, long)):
+           isinstance(value, (int, float)):
             self._width = value
 
     def __str__(self):

@@ -1,6 +1,6 @@
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
+
+
+
 import os
 import json
 import uuid
@@ -118,7 +118,7 @@ class FeatureLayer_Depricated(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, v)
             else:
@@ -547,7 +547,7 @@ class FeatureLayer_Depricated(BaseAGSServer):
             js = js['features']
             if lowerCaseFieldNames == True:
                 for feat in js:
-                    feat['attributes'] = dict((k.lower(), v) for k,v in feat['attributes'].items())
+                    feat['attributes'] = dict((k.lower(), v) for k,v in list(feat['attributes'].items()))
             if len(js) == 0:
                 return {'addResults':None}
             if len(js) <= max_chunk:
@@ -890,7 +890,7 @@ class FeatureLayer_Depricated(BaseAGSServer):
             params['maxAllowableOffset'] = maxAllowableOffset
         if not geometryPrecision is None:
             params['geometryPrecision'] = geometryPrecision
-        for k,v in kwargs.items():
+        for k,v in list(kwargs.items()):
             params[k] = v
         if returnDistinctValues:
             params["returnGeometry"] = False
@@ -1173,7 +1173,7 @@ class GroupLayer(FeatureLayer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, v)
             else:

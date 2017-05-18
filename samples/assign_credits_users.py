@@ -3,7 +3,7 @@
    of users
 
 """
-from __future__ import print_function
+
 import arcrest
 
 def main():

@@ -11,7 +11,7 @@
    Python 2.x/3.x
    ArcREST 3.5.4
 """
-from __future__ import print_function
+
 import arcrest
 
 import csv

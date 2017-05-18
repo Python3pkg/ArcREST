@@ -7,7 +7,7 @@
 
 
 """
-from __future__ import print_function
+
 import arcrest
 from arcrest.security import AGOLTokenSecurityHandler
 from arcrest.security import PortalTokenSecurityHandler

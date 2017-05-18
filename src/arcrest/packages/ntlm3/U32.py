@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library.  If not, see <http://www.gnu.org/licenses/> or <http://www.gnu.org/licenses/lgpl.txt>.
 
-from __future__ import division
+
 from .. import six
 
 C = 0x1000000000
@@ -152,5 +152,5 @@ class U32:
     def __ne__(self, other):
         return self.v != other.v
 
-    def __nonzero__(self):
+    def __bool__(self):
         return norm(self.v)

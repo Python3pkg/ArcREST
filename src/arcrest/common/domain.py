@@ -2,8 +2,8 @@
 This module contains the JSON domain objects.
 Domains specify the set of valid values for a field.
 """
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 ########################################################################
 class CodedValueDomain(object):
@@ -160,7 +160,7 @@ class RangeDomain(object):
     @minValue.setter
     def minValue(self, value):
         """gets/sets the min value"""
-        if isinstance(value, [int, float, long]):
+        if isinstance(value, [int, float, int]):
             self._rangeMin = value
     #----------------------------------------------------------------------
     @property
@@ -171,5 +171,5 @@ class RangeDomain(object):
     @maxValue.setter
     def maxValue(self, value):
         """gets/sets the min value"""
-        if isinstance(value, [int, float, long]):
+        if isinstance(value, [int, float, int]):
             self._rangeMax = value

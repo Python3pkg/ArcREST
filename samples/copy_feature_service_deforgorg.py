@@ -67,7 +67,7 @@ def main():
         shhSource = securityhandlerhelper.securityhandlerhelper(securityinfoSource)
         shhTarget = securityhandlerhelper.securityhandlerhelper(securityinfoTarget)
         if shhSource.valid == False or shhTarget.valid == False:
-            print shhSource.message + " "  + shhTarget.message
+            print(shhSource.message + " "  + shhTarget.message)
         else:        
           
             adminSource = arcrest.manageorg.Administration(securityHandler=shhSource.securityhandler)
@@ -78,10 +78,10 @@ def main():
                                        serviceType='Feature Service')
             if 'available' in res:
                 if res['available'] == False:
-                    print "Pick a new name" 
+                    print("Pick a new name") 
                     return
             else:
-                print "Pick a new name" 
+                print("Pick a new name") 
                 return
                 
             itemSource = adminSource.content.getItem(itemId)
@@ -196,7 +196,7 @@ def main():
             print(updateItemResults)
                     
             if itemSource.protected:
-                print(item.protect())
+                print((item.protect()))
             
             adminNewFS = arcrest.hostedservice.AdminFeatureService(url=newServiceResult.url, securityHandler=shhTarget.securityhandler)
             adminExistFS = fs.administration
@@ -238,9 +238,9 @@ def main():
      
     except:
         line, filename, synerror = trace()
-        print("error on line: %s" % line)
-        print("error in file name: %s" % filename)
-        print("with error message: %s" % synerror)
+        print(("error on line: %s" % line))
+        print(("error in file name: %s" % filename))
+        print(("with error message: %s" % synerror))
         
 if __name__ == "__main__":
     main()

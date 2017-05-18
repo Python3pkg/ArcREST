@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from . import spatial
 from . import general
 from . import geometry

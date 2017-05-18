@@ -4,8 +4,8 @@
 """
 
 #from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 import io
 import os
 import re
@@ -19,7 +19,7 @@ import mimetypes
 import email.generator
 from io import BytesIO
 try:
-    from cStringIO import StringIO
+    from io import StringIO
 except:
     from io import StringIO
 
@@ -56,13 +56,13 @@ class MultiPartForm(object):
         if len(param_dict) == 0:
             self.form_fields = []
         else:
-            for k,v in param_dict.items():
+            for k,v in list(param_dict.items()):
                 self.form_fields.append((k,v))
                 del k,v
         if len(files) == 0:
             self.files = []
         else:
-            for key,v in files.items():
+            for key,v in list(files.items()):
                 self.add_file(fieldname=key,
                               filename=os.path.basename(v),
                               filePath=v,
@@ -379,12 +379,12 @@ class WebOperations(object):
             headers['Accept-Encoding'] = 'gzip'
         else:
             headers['Accept-Encoding'] = ''
-        for k,v in additional_headers.items():
+        for k,v in list(additional_headers.items()):
             headers[k] = v
             del k,v
         opener = request.build_opener(*handlers)
         request.install_opener(opener)
-        opener.addheaders = [(k,v) for k,v in headers.items()]
+        opener.addheaders = [(k,v) for k,v in list(headers.items())]
         if len(files) == 0:
             data = urlencode(param_dict)
             if self.PY3:
@@ -454,7 +454,7 @@ class WebOperations(object):
         else:
             headers.append(('Accept-encoding', ''))
         headers.append(('User-Agent', self.useragent))
-        if len(param_dict.keys()) == 0:
+        if len(list(param_dict.keys())) == 0:
             param_dict = None
         if handlers is None:
             handlers = []

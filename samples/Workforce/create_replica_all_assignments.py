@@ -4,7 +4,7 @@
    ArcREST 3.5
 """
 
-from __future__ import print_function
+
 import arcrest
 from arcresthelper import securityhandlerhelper
 from arcresthelper import common
@@ -77,7 +77,7 @@ if __name__ == "__main__":
             print (exportItem.userItem.deleteItem())
 
             print (itemDataPath)
-    except (common.ArcRestHelperError),e:
+    except (common.ArcRestHelperError) as e:
         print ("error in function: %s" % e[0]['function'])
         print ("error on line: %s" % e[0]['line'])
         print ("error in file name: %s" % e[0]['filename'])

@@ -3,8 +3,8 @@
    version 3.5.4
    Python 2
 """
-from __future__ import print_function
-from __future__ import absolute_import
+
+
 import arcrest
 from arcresthelper import featureservicetools
 from arcresthelper import common

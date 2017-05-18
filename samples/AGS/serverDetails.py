@@ -30,15 +30,15 @@ if __name__ == "__main__":
                                     token_url=None, 
                                     proxy_url=None, 
                                     proxy_port=None)
-        print sh.token
+        print(sh.token)
         ags = AGSAdministration(url=url,
                           securityHandler=sh,
                           proxy_url=None,
                           proxy_port=None)
-        print ags.data
+        print(ags.data)
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)

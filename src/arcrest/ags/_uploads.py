@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from ..packages.six.moves import urllib_parse as urlparse
 from ..packages.six.moves.urllib.parse import urlencode
 from .._abstract.abstract import BaseAGSServer
@@ -119,7 +119,7 @@ class Uploads(BaseAGSServer):
         url = self._url + "/%s/download" % itemID
         params = {
         }
-        if len(params.keys()):
+        if len(list(params.keys())):
             url =  url + "?%s" % urlencode(params)
         return self._get(url=url,
                          param_dict=params,

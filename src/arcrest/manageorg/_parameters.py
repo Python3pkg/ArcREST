@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from .._abstract.abstract import BaseParameters
 from ..common.geometry import SpatialReference, Envelope
 import os
@@ -435,7 +435,7 @@ class PortalParameters(BaseParameters):
         """creates the portal properties object from a dictionary"""
         if isinstance(value, dict):
             pp = PortalParameters()
-            for k,v in value.items():
+            for k,v in list(value.items()):
                 setattr(pp, "_%s" % k, v)
             return pp
         else:

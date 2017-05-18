@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     shh = securityhandlerhelper.securityhandlerhelper(securityinfo=securityinfo)
     if shh.valid == False:
-        print shh.message
+        print(shh.message)
     else:
         fl= FeatureLayer(
             url=url,
@@ -54,4 +54,4 @@ if __name__ == "__main__":
         features.append(Feature(json_string=json_string))
 
 
-        print fl.updateFeature(features=features)
+        print(fl.updateFeature(features=features))

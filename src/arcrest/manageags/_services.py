@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from .._abstract.abstract import BaseAGSServer
 from ..packages.six.moves.urllib_parse import urlparse
 from .parameters import Extension
@@ -57,7 +57,7 @@ class Services(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -147,7 +147,7 @@ class Services(BaseAGSServer):
                                  securityHandler=self._securityHandler,
                                  proxy_url=self._proxy_url,
                                  proxy_port=self._proxy_port)
-        if "services" in json_dict.keys():
+        if "services" in list(json_dict.keys()):
             for s in json_dict['services']:
                 uURL = self._currentURL + "/%s.%s" % (s['serviceName'], s['type'])
                 self._services.append(
@@ -627,7 +627,7 @@ class AGSService(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                     if not attr.startswith('__') and \
                     not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k.lower() == "extensions":
                 self._extensions = []
                 for ext in v:
@@ -686,7 +686,7 @@ class AGSService(BaseAGSServer):
         """class iterator which yields a key/value pair"""
         if self._json_dict is None:
             self.__init()
-        for k,v in self._json_dict.items():
+        for k,v in list(self._json_dict.items()):
             yield (k,v)
     #----------------------------------------------------------------------
     def jsonProperties(self):

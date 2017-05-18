@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 from .._abstract.abstract import BaseAGSServer
 import json
 ########################################################################
@@ -47,7 +47,7 @@ class GeoDataService(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 if k == "versions" and json_dict[k]:
                     self._versions = []
@@ -83,7 +83,7 @@ class GeoDataService(BaseAGSServer):
         returns key/value pair
         """
         attributes = json.loads(str(self))
-        for att in attributes.keys():
+        for att in list(attributes.keys()):
             yield [att, getattr(self, att)]
     #----------------------------------------------------------------------
     @property
@@ -195,7 +195,7 @@ class Version(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -214,7 +214,7 @@ class Version(BaseAGSServer):
         returns key/value pair
         """
         attributes = json.loads(str(self))
-        for att in attributes.keys():
+        for att in list(attributes.keys()):
             yield [att, getattr(self, att)]
 
     #----------------------------------------------------------------------
@@ -323,7 +323,7 @@ class Replica(BaseAGSServer):
         attributes = [attr for attr in dir(self)
                       if not attr.startswith('__') and \
                       not attr.startswith('_')]
-        for k,v in json_dict.items():
+        for k,v in list(json_dict.items()):
             if k in attributes:
                 setattr(self, "_"+ k, json_dict[k])
             else:
@@ -342,7 +342,7 @@ class Replica(BaseAGSServer):
         returns key/value pair
         """
         attributes = json.loads(str(self))
-        for att in attributes.keys():
+        for att in list(attributes.keys()):
             yield [att, getattr(self, att)]
 
     #----------------------------------------------------------------------

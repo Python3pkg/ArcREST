@@ -1,5 +1,5 @@
-from __future__ import absolute_import
-from __future__ import print_function
+
+
 import json
 try:
     import arcpy
@@ -165,8 +165,7 @@ class Point(abstract.AbstractGeometry):
     @X.setter
     def X(self, value):
         """sets the X coordinate"""
-        if isinstance(value, (int, float,
-                              long, types.NoneType)):
+        if isinstance(value, (int, float, type(None))):
             self._x = value
     #----------------------------------------------------------------------
     @property
@@ -177,8 +176,7 @@ class Point(abstract.AbstractGeometry):
     @Y.setter
     def Y(self, value):
         """ sets the Y coordinate """
-        if isinstance(value, (int, float,
-                              long, types.NoneType)):
+        if isinstance(value, (int, float, type(None))):
             self._y = value
     #----------------------------------------------------------------------
     @property
@@ -189,8 +187,7 @@ class Point(abstract.AbstractGeometry):
     @Z.setter
     def Z(self, value):
         """ sets the Z coordinate """
-        if isinstance(value, (int, float,
-                              long, types.NoneType)):
+        if isinstance(value, (int, float, type(None))):
             self._z = value
     #----------------------------------------------------------------------
     @property
@@ -201,8 +198,7 @@ class Point(abstract.AbstractGeometry):
     @wkid.setter
     def wkid(self, value):
         """ sets the wkid """
-        if isinstance(value, (int,
-                              long)):
+        if isinstance(value, int):
             self._wkid = value
     #----------------------------------------------------------------------
     @property

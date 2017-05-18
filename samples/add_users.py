@@ -46,7 +46,7 @@ def main():
 
         shh = securityhandlerhelper.securityhandlerhelper(securityinfo)
         if shh.valid == False:
-            print shh.message
+            print(shh.message)
         else:
             admin = arcrest.manageorg.Administration(securityHandler=shh.securityhandler)
             portal = admin.portals.portalSelf
@@ -57,14 +57,14 @@ def main():
                             email="test@test.com", role="account_user")
             res = portal.addUser(invitationList=invList,
                         subject="test", html="test")
-            print res
+            print(res)
           
 
     except:
         line, filename, synerror = trace()
-        print "error on line: %s" % line
-        print "error in file name: %s" % filename
-        print "with error message: %s" % synerror
+        print("error on line: %s" % line)
+        print("error in file name: %s" % filename)
+        print("with error message: %s" % synerror)
 
 if __name__ == "__main__":
     main()
